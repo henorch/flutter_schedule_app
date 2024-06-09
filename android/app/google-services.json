@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "164706071710",
+    "project_id": "schedule-flutter-app",
+    "storage_bucket": "schedule-flutter-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164706071710:android:b4a05f457761867c68f78f",
+        "android_client_info": {
+          "package_name": "com.example.world_times"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7cgUBS_o01cFZecvLfnPv5ubi-xdgr_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

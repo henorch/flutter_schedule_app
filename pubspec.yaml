@@ -1,0 +1,100 @@
+name: world_times
+description: "A new Flutter project."
+
+
+publish_to: 'none' 
+
+
+
+
+
+
+
+
+
+
+
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+
+
+
+
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  
+  
+  cupertino_icons: ^1.0.6
+  firebase_core: ^2.32.0
+  firebase_auth: ^4.20.0
+  firebase_storage: ^11.7.7
+  cloud_firestore: ^4.17.5
+  shared_preferences: ^2.2.3
+  flutter_native_splash: ^2.4.0
+  liquid_swipe: ^3.1.0
+  smooth_page_indicator: ^1.1.0
+  provider: ^6.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/h.png
+  color_dark: "#ffffff"
+  image_dark: assets/htrans.png
+
+  android_12:
+    icon_background_color: "#ffffff"
+    image: assets/h.png
+    icon_background_color_dark: "#ffffff"
+    image_dark: assets/h.png
+  
+  
+
+
+
+
+
+flutter:
+
+  
+  
+  
+  uses-material-design: true
+
+  
+  assets:
+    - assets/
+    - assets/onboarding/
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  fonts:
+    - family: PoetsenOne
+      fonts:
+        - asset: fonts/PoetsenOne-Regular.ttf
+  
+  
+  
