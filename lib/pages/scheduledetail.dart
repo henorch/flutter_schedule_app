@@ -90,41 +90,56 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
             bottom: 3,
             child:
                 Consumer<PostProvider>(builder: (context, postProvider, child) {
-              return Card(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    OutlinedButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Colors.white),
-                            fixedSize: WidgetStatePropertyAll(Size(width, 50)),
-                            foregroundColor:
-                                WidgetStatePropertyAll(Colors.black)),
-                        onPressed: () => Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PostEdit(
-                                    id: widget.Postid,
-                                    title: widget.Posttitle,
-                                    category: widget.category,
-                                    description: widget.description))),
-                        child: Text("Edit")),
-                    SizedBox(
-                      width: 20.0,
-                    ),
-                    ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(Colors.red),
-                          foregroundColor: WidgetStatePropertyAll(Colors.white),
-                          fixedSize: WidgetStatePropertyAll(Size(width, 50)),
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Card(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        OutlinedButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    WidgetStatePropertyAll(Colors.white),
+                                fixedSize:
+                                    WidgetStatePropertyAll(Size(width, 50)),
+                                foregroundColor:
+                                    WidgetStatePropertyAll(Colors.black)),
+                            onPressed: () => Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PostEdit(
+                                        id: widget.Postid,
+                                        title: widget.Posttitle,
+                                        category: widget.category,
+                                        description: widget.description))),
+                            child: Text("Edit")),
+                        SizedBox(
+                          width: 20.0,
                         ),
-                        onPressed: () {
-                          postProvider.deletePost(widget.Postid);
-                        },
-                        child: Text("Delete"))
-                  ],
-                ),
+                        ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  WidgetStatePropertyAll(Colors.red),
+                              foregroundColor:
+                                  WidgetStatePropertyAll(Colors.white),
+                              fixedSize:
+                                  WidgetStatePropertyAll(Size(width, 50)),
+                            ),
+                            onPressed: () {
+                              postProvider.deletePost(widget.Postid);
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          HomeScreen(username: "")));
+                            },
+                            child: Text("Delete"))
+                      ],
+                    ),
+                  ),
+                ],
               );
             }),
           )

@@ -38,21 +38,21 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Wrapper extends StatelessWidget {
-  const Wrapper({super.key});
+// class Wrapper extends StatelessWidget {
+//   const Wrapper({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Consumer<UserProvider>(
-        builder: (context, userProvider, child) {
-          if (userProvider.isLoggedIn) {
-            return HomeScreen(username: "");
-          } else {
-            return LoginScreen();
-          }
-        },
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Consumer<UserProvider>(
+//         builder: (context, userProvider, child) {
+//           if (userProvider.isLoggedIn) {
+//             return HomeScreen(username: "");
+//           } else {
+//             return LoginScreen();
+//           }
+//         },
+//       ),
+//     );
+//   }
+// }

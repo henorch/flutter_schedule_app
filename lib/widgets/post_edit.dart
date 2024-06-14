@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:world_times/pages/homepage.dart';
 import 'package:world_times/src/features/presntations/model/postmodel.dart';
 import 'package:world_times/src/features/presntations/providers/postprovider.dart';
 import 'package:world_times/widgets/catgory_screen.dart';
@@ -183,6 +184,11 @@ class _EditContentState extends State<EditContent> {
                               category,
                               rating
                             }),
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        HomeScreen(username: ""))),
                             postProvider.updatePost(
                                 widget.id,
                                 PostModel(
