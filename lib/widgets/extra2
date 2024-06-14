@@ -32,13 +32,23 @@ class PostProvider extends ChangeNotifier {
     }
   }
 
-  List<PostModel> filterPostsByCategory(String category) {
+List<PostModel> filterPostsByCategory(String category) {
     return _postModels.where((post) => post.category == category).toList();
   }
 
+Future<void> deletePost(String postId) async {
+    try {
+      await _firestoreService.deletePost(postId);
+      _postModels.removeWhere((post) => post.id == postId);
+      notifyListeners();
+    } catch (e) {
+      _errorMessage = 'Error deleting post: $e';
+      notifyListeners();
+    }
+  }
   Future<void> addPost(PostModel postModel) async {
     String? owner = await LocalStorage.getFromSharedPreference('userid');
-    if (owner == null) {
+    if(owner == null){
       return;
     }
     try {
@@ -53,8 +63,9 @@ class PostProvider extends ChangeNotifier {
 
   Future<void> updatePost(String postId, PostModel updatedPost) async {
     try {
-      await _firestoreService.updatePost(postId, updatedPost);
-      int index = _postModels.indexWhere((post) => post.id == updatedPost.id);
+      await _firestoreService.updatePost(updatedPost);
+      int index =
+          _postModels.indexWhere((post) => post.postId == updatedPost.postId);
       if (index != -1) {
         _postModels[index] = updatedPost;
         notifyListeners();
@@ -65,9 +76,11 @@ class PostProvider extends ChangeNotifier {
     }
   }
 
+
+
   Future<void> deletePost(String postId) async {
     try {
-      await _firestoreService.deletePost(postId);
+      await _fetcPost.deletePost(postId);
       _postModels.removeWhere((post) => post.id == postId);
       notifyListeners();
     } catch (e) {
@@ -75,4 +88,5 @@ class PostProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
 }

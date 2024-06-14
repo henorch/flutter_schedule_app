@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:world_times/pages/scheduledetail.dart';
 import 'package:world_times/src/features/presntations/providers/postprovider.dart';
+import 'package:world_times/widgets/post_edit.dart';
 
 import '../pages/homepage.dart';
 import '../src/features/presntations/model/postmodel.dart';
@@ -61,27 +62,27 @@ class ListCateg extends StatelessWidget {
               PostModel post = posts[index];
               return GestureDetector(
                 onDoubleTap: () => {
-                  print("You double tap me"),
-                  _showDetailsDialog(context, "Great", "Super natural")
+                  _showDetailsDialog(context, post.id, post.category,
+                      post.title, post.description)
                 },
                 child: ListTile(
                   title: Text(
-                    post.postTitle,
+                    post.title,
                     style:
                         TextStyle(fontSize: 25.0, fontWeight: FontWeight.w700),
                   ),
                   subtitle: Text(
-                    post.postDescription,
+                    post.description,
                     style: TextStyle(fontSize: 20.0),
                   ),
                   onTap: () => Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => ScheduleDetail(
-                              Postid: post.postId,
-                              Posttitle: post.postTitle,
-                              category: post.postCategory,
-                              description: post.postDescription))),
+                              Postid: post.id,
+                              Posttitle: post.title,
+                              category: post.category,
+                              description: post.description))),
                 ),
               );
             },
@@ -91,22 +92,62 @@ class ListCateg extends StatelessWidget {
     );
   }
 
-  void _showDetailsDialog(BuildContext context, String title, String subtitle) {
+  void _showDetailsDialog(BuildContext context, String id, String category,
+      String title, String description) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title),
-          content: Text(subtitle),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Close'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+        return Consumer<PostProvider>(builder: (context, postProvider, child) {
+          return Dialog(
+            insetAnimationDuration: Duration(seconds: 2),
+            insetAnimationCurve: Curves.bounceIn,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton.icon(
+                  onPressed: () => {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PostEdit(
+                                  id: id,
+                                  description: description,
+                                  category: category,
+                                  title: title,
+                                ))),
+                  },
+                  label: Text(
+                    "Edit",
+                    style: TextStyle(fontSize: 30, fontFamily: 'PoetsenOne'),
+                  ),
+                  icon: Icon(
+                    Icons.edit_note,
+                    size: 50,
+                  ),
+                ),
+                TextButton.icon(
+                  onPressed: () => {
+                    Navigator.pop(context),
+                    postProvider.deletePost(id),
+                  },
+                  label: Text(
+                    "Delete",
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.red,
+                        fontFamily: 'PoetsenOne'),
+                  ),
+                  icon: Icon(
+                    Icons.delete_outline_outlined,
+                    size: 50,
+                    color: Colors.red,
+                  ),
+                )
+              ],
             ),
-          ],
-        );
+          );
+        });
       },
     );
   }

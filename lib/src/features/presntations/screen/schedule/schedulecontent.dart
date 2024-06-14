@@ -18,7 +18,7 @@ class SchedulContent extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
-              DetailInfo(title: "title", description: scheduleModel.postTitle),
+              DetailInfo(title: "title", description: scheduleModel.title),
               Divider(
                 height: 20.0,
               ),
@@ -53,19 +53,17 @@ class SchedulContent extends StatelessWidget {
               children: [
                 OutlinedButton(
                     style: ButtonStyle(
-                        fixedSize: WidgetStatePropertyAll(Size(200, 50)),
                         backgroundColor: WidgetStatePropertyAll(Colors.white),
                         foregroundColor: WidgetStatePropertyAll(Colors.black)),
                     onPressed: null,
                     child: Text("Edit")),
                 SizedBox(
-                  width: 30.0,
+                  width: 20.0,
                 ),
                 ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(Colors.red),
                       foregroundColor: WidgetStatePropertyAll(Colors.white),
-                      fixedSize: WidgetStatePropertyAll(Size(200, 50)),
                     ),
                     onPressed: () {},
                     child: Text("Delete"))

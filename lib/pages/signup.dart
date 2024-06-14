@@ -97,7 +97,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         fontFamily: 'PoetsenOne'),
                   ),
                   const SizedBox(
-                    width: 10.0,
+                    width: 5.0,
                   ),
                   GestureDetector(
                     onTap: () => {
@@ -109,10 +109,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     child: const Text(
                       'LOGIN HERE',
                       style: TextStyle(
-                          fontSize: 23.0,
-                          fontStyle: FontStyle.italic,
-                          color: Colors.blue,
-                          fontFamily: 'PoetsenOne'),
+                        fontSize: 20.0,
+                        fontStyle: FontStyle.italic,
+                        color: Colors.blue,
+                      ),
                     ),
                   )
                 ],

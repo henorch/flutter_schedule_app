@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:world_times/local_storages/share_pref.dart';
 import 'package:world_times/pages/homepage.dart';
+import 'package:world_times/src/features/presntations/providers/postprovider.dart';
+import 'package:world_times/widgets/post_edit.dart';
 
 class ScheduleDetail extends StatefulWidget {
   final String Postid;
@@ -38,6 +41,7 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width / 2 - 50;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -84,34 +88,45 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
           Positioned(
             left: 0,
             bottom: 3,
-            child: Card(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  OutlinedButton(
-                      style: ButtonStyle(
-                          fixedSize: WidgetStatePropertyAll(Size(200, 50)),
-                          backgroundColor: WidgetStatePropertyAll(Colors.white),
-                          foregroundColor:
-                              WidgetStatePropertyAll(Colors.black)),
-                      onPressed: null,
-                      child: Text("Edit")),
-                  SizedBox(
-                    width: 30.0,
-                  ),
-                  ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(Colors.red),
-                        foregroundColor: WidgetStatePropertyAll(Colors.white),
-                        fixedSize: WidgetStatePropertyAll(Size(200, 50)),
-                      ),
-                      onPressed: () {
-                        print('something id');
-                      },
-                      child: Text("Delete"))
-                ],
-              ),
-            ),
+            child:
+                Consumer<PostProvider>(builder: (context, postProvider, child) {
+              return Card(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    OutlinedButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                WidgetStatePropertyAll(Colors.white),
+                            fixedSize: WidgetStatePropertyAll(Size(width, 50)),
+                            foregroundColor:
+                                WidgetStatePropertyAll(Colors.black)),
+                        onPressed: () => Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PostEdit(
+                                    id: widget.Postid,
+                                    title: widget.Posttitle,
+                                    category: widget.category,
+                                    description: widget.description))),
+                        child: Text("Edit")),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(Colors.red),
+                          foregroundColor: WidgetStatePropertyAll(Colors.white),
+                          fixedSize: WidgetStatePropertyAll(Size(width, 50)),
+                        ),
+                        onPressed: () {
+                          postProvider.deletePost(widget.Postid);
+                        },
+                        child: Text("Delete"))
+                  ],
+                ),
+              );
+            }),
           )
         ]),
       ),

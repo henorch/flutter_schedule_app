@@ -66,43 +66,44 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               top: 80.0,
               right: 30.0,
               child: OutlinedButton(
-                style: ButtonStyle(
+                style: const ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(Colors.black),
                     foregroundColor: WidgetStatePropertyAll(Colors.white)),
                 onPressed: () => {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => LoginScreen()))
                 },
-                child: Text(
+                child: const Text(
                   "SKIP",
-                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 25.0, fontWeight: FontWeight.bold),
                 ),
               )),
           Positioned(
               bottom: 60.0,
               child: OutlinedButton(
                   style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.all(20),
-                      side: BorderSide(color: Colors.black),
-                      shape: CircleBorder()),
+                      padding: const EdgeInsets.all(20),
+                      side: const BorderSide(color: Colors.black),
+                      shape: const CircleBorder()),
                   onPressed: () {
                     int nextPage = controller.currentPage + 1;
                     controller.animateToPage(page: nextPage);
                   },
                   child: Container(
-                      padding: EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(20.0),
+                      decoration: const BoxDecoration(
                         color: Colors.black,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.arrow_forward_ios,
                         color: Colors.white,
                       )))),
           Positioned(
               bottom: 10.0,
               child: AnimatedSmoothIndicator(
-                  effect: WormEffect(
+                  effect: const WormEffect(
                     activeDotColor: Colors.purple,
                     dotHeight: 10.0,
                   ),

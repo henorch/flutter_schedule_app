@@ -1,11 +1,11 @@
 class ScheduleModel {
-  final String postId;
-  final String postTitle;
+  final String id;
+  final String title;
   final String category;
   final String description;
   const ScheduleModel({
-    required this.postId,
-    required this.postTitle,
+    required this.id,
+    required this.title,
     required this.category,
     required this.description,
   });

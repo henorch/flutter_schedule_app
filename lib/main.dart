@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           darkTheme: HAppTheme.darkTheme,
           themeMode: _isDark ? ThemeMode.dark : ThemeMode.light,
           debugShowCheckedModeBanner: false,
-          home: Wrapper()),
+          home: LoginScreen()),
     );
   }
 }

@@ -14,7 +14,6 @@ class MyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
         style: ButtonStyle(
-            minimumSize: const WidgetStatePropertyAll(Size(480, 50)),
             backgroundColor: WidgetStatePropertyAll(backgroundColor)),
         onPressed: handlePress,
         child: Text(

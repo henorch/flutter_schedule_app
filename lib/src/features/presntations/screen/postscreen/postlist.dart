@@ -16,8 +16,7 @@ class _PostlistState extends State<Postlist> {
   void initState() {
     print(widget.useruid);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<PostProvider>(context, listen: false)
-          .fetchAllPostByCurrentUser(widget.useruid);
+      Provider.of<PostProvider>(context, listen: false).fetchAllPosts();
     });
     super.initState();
   }
@@ -47,14 +46,14 @@ class _PostlistState extends State<Postlist> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ScheduleDetail(
-                                Postid: post.postId,
-                                Posttitle: post.postTitle,
-                                description: post.postDescription,
-                                category: post.postCategory,
+                                Postid: post.id,
+                                Posttitle: post.title,
+                                description: post.description,
+                                category: post.category,
                               ))),
                   title: SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    child: Text(post.postTitle,
+                    child: Text(post.title,
                         style: TextStyle(
                             fontSize: 30.0, fontWeight: FontWeight.bold)),
                   ),
@@ -72,7 +71,7 @@ class _PostlistState extends State<Postlist> {
                             width: 5.0,
                           ),
                           Text(
-                            post.postCategory,
+                            post.category,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ],
@@ -80,7 +79,7 @@ class _PostlistState extends State<Postlist> {
                       SizedBox(width: 10.0),
                       OutlinedButton.icon(
                           onPressed: () async =>
-                              {await postProvider.deletePost(post.postId)},
+                              {await postProvider.deletePost(post.id)},
                           label: Text("Remove"),
                           icon: Icon(Icons.remove_circle_outline)),
                       Divider(

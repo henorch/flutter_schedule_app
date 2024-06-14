@@ -51,4 +51,18 @@ class FetchPostServices {
       print('Error deleting post: $e');
     }
   }
+
+  Future<PostModel> addSchedule(String owner, PostModel postModel) async {
+    try {
+      await _firestore.collection('posts').add(postModel.toMap());
+      return postModel;
+    } catch (e) {
+      print(e);
+      throw Exception(e);
+    }
+  }
+
+  Future<void> updatePost(String postId, PostModel postModel) async {
+    await _firestore.collection('posts').doc(postId).set(postModel.toMap());
+  }
 }

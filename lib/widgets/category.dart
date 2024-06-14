@@ -43,7 +43,7 @@ class _CategoryState extends State<Category> {
                     child: Stack(children: [
                       Container(
                         padding: const EdgeInsets.all(8.0),
-                        width: 380,
+                        width: MediaQuery.of(context).size.width - 120.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -36,9 +36,9 @@ class TextFieldWdget extends StatelessWidget {
           hintText: placeholder,
           labelText: subject,
           labelStyle: const TextStyle(
-              fontSize: 25.0,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'PoetsenOne'),
+            fontSize: 25.0,
+            fontWeight: FontWeight.bold,
+          ),
           prefixIcon: sideIcon,
           suffixIcon: surIcon,
         ),

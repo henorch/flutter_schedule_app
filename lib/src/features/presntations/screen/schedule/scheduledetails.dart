@@ -41,8 +41,8 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
           scheduleModel: ScheduleModel(
         category: '',
         description: '',
-        postId: '',
-        postTitle: '',
+        id: '',
+        title: '',
       )),
     );
   }

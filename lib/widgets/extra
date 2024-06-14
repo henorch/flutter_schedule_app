@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:world_times/local_storages/share_pref.dart';
+import 'package:world_times/src/features/presntations/model/addPostModel.dart';
 import 'package:world_times/src/features/presntations/providers/postprovider.dart';
 import 'package:world_times/widgets/button.dart';
 import 'package:world_times/widgets/textfield.dart';
-
-import '../src/features/presntations/model/postmodel.dart';
 
 class BottomSheetModal extends StatefulWidget {
   final FocusNode focusNode;
@@ -42,7 +41,7 @@ class _BottomSheetModalState extends State<BottomSheetModal> {
                   fontSize: 30.0,
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               IconButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -58,25 +57,25 @@ class _BottomSheetModalState extends State<BottomSheetModal> {
               isObscure: false,
               sideIcon: const Icon(Icons.title),
             ),
-            const SizedBox(height: 5.0),
+            const SizedBox(height: 10.0),
             Padding(
               padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0),
               child: TextFormField(
                 controller: _descriptioncontroller,
-                maxLines: 5,
+                maxLines: 6,
                 decoration: const InputDecoration(
                   hintText: 'description',
                   labelText: "description",
                   labelStyle: TextStyle(
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'PoetsenOne'),
                   prefixIcon: Icon(Icons.description_outlined),
                 ),
               ),
             ),
             const SizedBox(
-              height: 5.0,
+              height: 10.0,
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0),
@@ -111,7 +110,7 @@ class _BottomSheetModalState extends State<BottomSheetModal> {
               ),
             ),
             const SizedBox(
-              height: 5.0,
+              height: 10.0,
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0),
@@ -146,38 +145,51 @@ class _BottomSheetModalState extends State<BottomSheetModal> {
               ),
             ),
             const SizedBox(
-              height: 5.0,
+              height: 20.0,
             ),
             Consumer<PostProvider>(
               builder: (context, postProvider, child) {
                 return MyButton(
-                    handlePress: () async {
+                  handlePress: () async {
+                    try {
+                      // Get the user ID from shared preferences
                       String? userid =
                           await LocalStorage.getFromSharedPreference('userid');
 
+                      // Check for null and handle it
                       if (userid == null) {
-                        print('User ID not found. Please log in.');
-                        return;
+                        print('User ID is null. Cannot create post.');
+                        return; // Early return if userid is null
                       }
 
-                      PostModel newPost = PostModel(
-                        id: '',
-                        title: _titlecontoller.text,
-                        category: category,
-                        description: _descriptioncontroller.text,
-                        owner: userid,
+                      // Create a PostModel instance
+                      AddPostModel newPost = AddPostModel(
+                        postTitle: _titlecontoller.text,
+                        postCategory: category,
+                        postDescription: _descriptioncontroller.text,
+                        postOwnerId: userid,
                       );
 
-                      await postProvider.addPost(newPost);
+                      await postProvider.addPost(userid, newPost);
 
-                      // await _firestore.addSchedule(userid, _titlecontoller.text,
-                      //     category, _descriptioncontroller.text, rating);
+                      print({
+                        'userId': userid,
+                        'title': _titlecontoller.text,
+                        'category': category,
+                        'description': _descriptioncontroller.text,
+                        'rating': rating,
+                      });
 
-                      print(newPost);
+                      // Pop the context to return to the previous screen
                       Navigator.pop(context);
-                    },
-                    text: "Create Schedule",
-                    backgroundColor: Colors.blue);
+                    } catch (e) {
+                      // Handle errors gracefully
+                      print('Error creating schedule: $e');
+                    }
+                  },
+                  text: "Create Schedule",
+                  backgroundColor: Colors.blue,
+                );
               },
             )
           ])

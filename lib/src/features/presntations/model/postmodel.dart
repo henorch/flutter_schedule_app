@@ -1,31 +1,40 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PostModel {
-  String postId;
-  String postTitle;
-  String postDescription;
-  String postOwnerId;
-  String postCategory;
+  String id;
+  String title;
+  String description;
+  String? owner;
+  String category;
 
   PostModel(
-      {required this.postId,
-      required this.postCategory,
-      required this.postDescription,
-      required this.postTitle,
-      required this.postOwnerId});
+      {required this.id,
+      required this.category,
+      required this.description,
+      required this.title,
+      this.owner});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'title': title,
+      'description': description,
+      'category': category,
+      'owner': owner
+    };
+  }
 
   factory PostModel.fromDocument(DocumentSnapshot doc) {
     return PostModel(
-      postId: doc.id,
-      postTitle: doc['title'],
-      postDescription: doc['description'],
-      postOwnerId: doc['owner'],
-      postCategory: doc['category'],
+      id: doc.id,
+      title: doc['title'],
+      description: doc['description'],
+      owner: doc['owner'],
+      category: doc['category'],
     );
   }
 
   @override
   String toString() {
-    return 'PostModel{postId: $postId,  postTitle: $postTitle, postDescription: $postDescription, postOwnerId: $postOwnerId, postCategory: $postCategory}';
+    return 'PostModel{id: $id,  title: $title, description: $description, owner: $owner, category: $category}';
   }
 }

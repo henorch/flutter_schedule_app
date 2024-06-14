@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Text(
               "CATEGORIES",
               style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
@@ -86,14 +86,14 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: const [
-                Category(
+                const Category(
                     name: "PERSONAL",
                     subname:
                         "Start by planning your personal life, and making value out of it"),
-                Category(
+                const Category(
                     name: "BUSINESS",
                     subname:
-                        "Business success relies on data, give it your personal data")
+                        "Business success relies on effective planning, start planning ")
               ],
             ),
           ),
@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const Padding(
             padding: EdgeInsets.all(4.0),
-            child: Text(
+            child: const Text(
               "TODAY'S PRIOTITIES",
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
