@@ -11,11 +11,13 @@ class PostEdit extends StatefulWidget {
   final String category;
   final String id;
   final String description;
+  final String owner;
   const PostEdit(
       {super.key,
       required this.id,
       required this.title,
       required this.category,
+      required this.owner,
       required this.description});
 
   @override
@@ -39,6 +41,7 @@ class _PostEditState extends State<PostEdit> {
       ),
       body: EditContent(
         id: widget.id,
+        owner: widget.owner,
         category: widget.category,
         description: widget.description,
         title: widget.title,
@@ -52,11 +55,13 @@ class EditContent extends StatefulWidget {
   final String title;
   final String description;
   final String category;
+  final String owner;
   const EditContent(
       {super.key,
       required this.id,
       required this.category,
       required this.description,
+      required this.owner,
       required this.title});
 
   @override
@@ -196,7 +201,9 @@ class _EditContentState extends State<EditContent> {
                                   category: category,
                                   description: _descriptioncontroller.text,
                                   title: _titlecontoller.text,
+                                  owner: widget.owner,
                                 )),
+                            print(widget.owner)
                           },
                       style: ButtonStyle(
                           foregroundColor: WidgetStatePropertyAll(Colors.black),

@@ -63,6 +63,10 @@ class FetchPostServices {
   }
 
   Future<void> updatePost(String postId, PostModel postModel) async {
-    await _firestore.collection('posts').doc(postId).set(postModel.toMap());
+    try {
+      await _firestore.collection('posts').doc(postId).set(postModel.toMap());
+    } catch (e) {
+      print(e);
+    }
   }
 }

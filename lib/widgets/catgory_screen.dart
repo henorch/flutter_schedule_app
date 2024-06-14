@@ -80,6 +80,7 @@ class ListCateg extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => ScheduleDetail(
                               Postid: post.id,
+                              owner: post.owner,
                               Posttitle: post.title,
                               category: post.category,
                               description: post.description))),
@@ -115,6 +116,7 @@ class ListCateg extends StatelessWidget {
                                   description: description,
                                   category: category,
                                   title: title,
+                                  owner: '',
                                 ))),
                   },
                   label: Text(

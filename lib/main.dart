@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:world_times/local_storages/share_pref.dart';
-import 'package:world_times/pages/homepage.dart';
 import 'package:world_times/pages/login.dart';
 import 'package:world_times/provider/userprovider.dart';
 import 'package:world_times/src/features/presntations/providers/postprovider.dart';

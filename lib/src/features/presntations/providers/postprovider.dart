@@ -55,6 +55,8 @@ class PostProvider extends ChangeNotifier {
     try {
       await _firestoreService.updatePost(postId, updatedPost);
       int index = _postModels.indexWhere((post) => post.id == updatedPost.id);
+      print(' this is post.id ${postId}');
+      print('this is updateId ${updatedPost.id}');
       if (index != -1) {
         _postModels[index] = updatedPost;
         notifyListeners();

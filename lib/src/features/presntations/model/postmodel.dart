@@ -4,7 +4,7 @@ class PostModel {
   String id;
   String title;
   String description;
-  String? owner;
+  String owner;
   String category;
 
   PostModel(
@@ -12,7 +12,7 @@ class PostModel {
       required this.category,
       required this.description,
       required this.title,
-      this.owner});
+      required this.owner});
 
   Map<String, dynamic> toMap() {
     return {

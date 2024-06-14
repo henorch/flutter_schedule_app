@@ -10,10 +10,12 @@ class ScheduleDetail extends StatefulWidget {
   final String Posttitle;
   final String category;
   final String description;
+  final String owner;
   const ScheduleDetail({
     super.key,
     required this.Postid,
     required this.Posttitle,
+    required this.owner,
     required this.category,
     required this.description,
   });
@@ -111,6 +113,7 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
                                 MaterialPageRoute(
                                     builder: (context) => PostEdit(
                                         id: widget.Postid,
+                                        owner: widget.owner,
                                         title: widget.Posttitle,
                                         category: widget.category,
                                         description: widget.description))),

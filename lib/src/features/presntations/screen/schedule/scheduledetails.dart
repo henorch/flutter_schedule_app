@@ -41,6 +41,7 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
           scheduleModel: ScheduleModel(
         category: '',
         description: '',
+        owner: '',
         id: '',
         title: '',
       )),

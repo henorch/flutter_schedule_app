@@ -13,19 +13,4 @@ class FirebaseStorageServices {
       // print(e);
     }
   }
-
-  Future<void> addSchedule(String? uid, String title, String category,
-      String description, String rating) async {
-    try {
-      await _firestore.collection('posts').add({
-        'owner': uid,
-        'title': title,
-        'category': category,
-        'description': description,
-        rating: rating
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
 }

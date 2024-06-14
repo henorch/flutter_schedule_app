@@ -48,6 +48,7 @@ class _PostlistState extends State<Postlist> {
                           builder: (context) => ScheduleDetail(
                                 Postid: post.id,
                                 Posttitle: post.title,
+                                owner: post.owner,
                                 description: post.description,
                                 category: post.category,
                               ))),
